@@ -1,12 +1,21 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-  initialize();
+  get_ice_candidates();
 }, false);
 
 var peer_id;
 var username;
 var conn;
 
-function initialize() {
+function get_ice_candidates() {
+  fetch('https://kram-twilio.azurewebsites.net/api/kram-twilio-trigger.')
+    .then(res => initialize(res.json()))
+    .then((out) => {
+        console.log('Done twilio req: ', out);
+  }).catch(err => console.error(err));
+}
+
+function initialize(twilio_res) {
+
   /**
    * Important: the host needs to be changed according to your requirements.
    * e.g if you want to access the Peer server from another device, the
@@ -15,7 +24,9 @@ function initialize() {
    * 
    * The iceServers on this example are public and can be used for your project.
    */
-  var peer = new Peer();
+  var peer = new Peer({
+    'iceServers': twilio_res.ice_servers
+  });
 
   // Once the initialization succeeds:
   // Show the ID that allows other user to connect to your session.
