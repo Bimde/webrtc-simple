@@ -2,11 +2,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
   initialize();
 }, false);
 
-function initialize() {
-  var peer_id;
-  var username;
-  var conn;
+var peer_id;
+var username;
+var conn;
 
+function initialize() {
   /**
    * Important: the host needs to be changed according to your requirements.
    * e.g if you want to access the Peer server from another device, the
