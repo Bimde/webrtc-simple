@@ -7,7 +7,7 @@ var username;
 var conn;
 
 function get_ice_candidates() {
-  fetch('https://kram-twilio.azurewebsites.net/api/kram-twilio-trigger.')
+  fetch('https://kram-twilio.azurewebsites.net/api/kram-twilio-trigger')
     .then(res => initialize(res.json()))
     .then((out) => {
         console.log('Done twilio req: ', out);
